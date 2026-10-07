@@ -7,6 +7,7 @@ using namespace std;
 
 class Striker : public Robot {
   public:
+    Striker();
     void think() override;
     void act(Ball& ball);
 };

@@ -3,7 +3,8 @@
 using namespace std;
 
 int main() {
-  cout << "tes";
+  Simulator simulator;
+  simulator.run();
 
   return 0;
 }

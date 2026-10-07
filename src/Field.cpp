@@ -2,6 +2,10 @@
 #include <cmath>
 using namespace std;
 
+Field::Field() {
+
+}
+
 int Field::toGridX(float x) {
   return static_cast<int>(std::round((x + 4.5) * 2.0));
 }
@@ -21,7 +25,7 @@ void Field::render(Vector2D RobotPosition, Vector2D ballPosition) {
       if(x == rX && y == rY) {
         cout << "R ";
       } else if(x == bX && y == bY) {
-        cout << "O";
+        cout << "O ";
       } else if(x == 17 && y >= 3 && y <= 8) {
         cout << "# ";
       } else {
