@@ -12,6 +12,7 @@ class Ball {
     float speed;
   
   public:
+    Ball();
     Vector2D getPosition();
     void kick(Vector2D targetDirection);
     void update();
