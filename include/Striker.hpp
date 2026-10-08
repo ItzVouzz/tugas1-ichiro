@@ -6,6 +6,12 @@
 using namespace std;
 
 class Striker : public Robot {
+  private:
+    enum State {
+      SEARCH_BALL, APPROACH_BALL, ALIGN_TO_GOAL, KICK
+    };
+    State currentState;
+
   public:
     Striker();
     void think() override;

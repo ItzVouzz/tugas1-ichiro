@@ -1,4 +1,5 @@
 #include "Robot.hpp"
+#include <cmath>
 
 float Robot::getOrientation() {
   return orientation;
@@ -26,5 +27,11 @@ void Robot::setSpeed(float newSpeed) {
 }
 
 void Robot::setOrientation(float newOrientation) {
-  orientation = newOrientation;
+  float normalized = fmod(newOrientation, 360.0);
+  if(normalized < 0) {
+    normalized += 360.0;
+  }
+
+  int quadrant = static_cast<int>(round(normalized / 90.0)) % 4;
+  orientation = quadrant * 90.0;
 }

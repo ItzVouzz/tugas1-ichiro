@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Vector2D.hpp"
+#include "Robot.hpp"
 using namespace std;
 
 class Field {
@@ -14,9 +15,7 @@ class Field {
     int toGridY(float y);
 
   public:
-    Field();
-
-    void render(Vector2D robotPosition, Vector2D ballPosition);
+    void render(Robot& robot, Vector2D ballPosition);
 };
 
 #endif

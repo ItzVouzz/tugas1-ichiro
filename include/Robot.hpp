@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Vector2D.hpp"
+#include "Sensor.hpp"
 using namespace std;
 
 class Robot {
@@ -10,6 +11,9 @@ class Robot {
     Vector2D position;
     float orientation;
     float speed;
+    Sensor camera;
+    bool isBallVisible;
+    Vector2D perceivedBallPos;
   
   public:
     void setPosition(Vector2D newPosition);
@@ -19,6 +23,7 @@ class Robot {
     float getSpeed();
     void setSpeed(float newSpeed);
     void setOrientation(float newOrientation);
+    virtual void sense(Vector2D actualBallPosition);
 };
 
 #endif

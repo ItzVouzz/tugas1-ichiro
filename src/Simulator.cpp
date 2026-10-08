@@ -15,7 +15,7 @@ void Simulator::run() {
     striker.act(ball);
     ball.update();
 
-    field.render(striker.getPosition(), ball.getPosition());
+    field.render(striker, ball.getPosition());
 
     Sleep(1000);
   }
