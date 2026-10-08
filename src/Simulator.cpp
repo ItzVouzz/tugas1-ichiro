@@ -11,6 +11,8 @@ void Simulator::run() {
     currentTick++;
 
     system("cls");
+
+    striker.sense(ball.getPosition());
     striker.think();
     striker.act(ball);
     ball.update();

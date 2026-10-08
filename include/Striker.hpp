@@ -3,6 +3,7 @@
 
 #include "Robot.hpp"
 #include "Ball.hpp"
+#include "Vector2D.hpp"
 using namespace std;
 
 class Striker : public Robot {

@@ -2,11 +2,11 @@
 using namespace std;
 
 Ball::Ball() {
-  position.x = 0;
-  position.y = 0;
+  position.x = 0.0;
+  position.y = 0.0;
   direction.x = 0;
   direction.y = 0;
-  speed = 0;
+  speed = 0.0;
 }
 
 Vector2D Ball::getPosition() {

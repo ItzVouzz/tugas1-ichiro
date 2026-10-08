@@ -13,7 +13,6 @@ Striker::Striker() {
 void Striker::think() {
   if(!isBallVisible) {
     currentState = SEARCH_BALL;
-    cout << "Mencari bola\n";
   } else {
     float distance = MathHelper::calculateDistance(position, perceivedBallPos);
 
@@ -30,14 +29,48 @@ void Striker::think() {
 }
 
 void Striker::act(Ball& ball) {
-  // if(MathHelper::calculateDistance(position, ball.getPosition()) <= 0.5) {
-  //   ball.kick(position);
-  // }
+  switch(currentState) {
+    case SEARCH_BALL:
+      setOrientation(getOrientation() + 90.0);
+      break;
+    case ALIGN_TO_GOAL:
+      setOrientation(0.0);
+      break;
+    case KICK:
+      Vector2D kickDirection;
+      kickDirection.x = 1.0;
 
-  Vector2D currentPosition = getPosition();
-  currentPosition.x += getSpeed();
-  setPosition(currentPosition);
-}
+      if(position.y < -1.5) {
+        kickDirection.y = 1.0;
+      } else if(position.y > 1.5) {
+        kickDirection.y = -1.0;
+      } else {
+        kickDirection.y = 0.0;
+      }
+
+      ball.kick(kickDirection);
+      break;
+    case APPROACH_BALL:
+      float dx = perceivedBallPos.x - position.x;
+      float dy = perceivedBallPos.y - position.y;
+      float distance = MathHelper::calculateDistance(position, perceivedBallPos);
+
+      if(distance > 0) {
+        Vector2D newPosition = position;
+        newPosition.x = newPosition.x + (dx/distance) * getSpeed();
+        newPosition.y = newPosition.y + (dy/distance) * getSpeed();
+        setPosition(newPosition);
+
+        if(abs(dx) > abs(dy)) {
+          setOrientation((dx > 0) ? 0.0 : 180.0);
+        } else {
+          setOrientation((dy > 0) ? 270.0 : 90.0);
+        }
+      }
+
+      break;
+    }
+  }
 
 void Robot::sense(Vector2D actualBallPosition) {
   try {
