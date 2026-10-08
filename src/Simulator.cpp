@@ -28,7 +28,7 @@ Simulator::Simulator() {
   striker.setPosition(robotStartPosition);
   ball.setPosition(ballStartPosition);
 
-  Sleep(2000);
+  Sleep(1500);
 }
 
 void Simulator::run() {
@@ -43,6 +43,13 @@ void Simulator::run() {
     ball.update();
 
     field.render(striker, ball.getPosition());
+
+    Vector2D finalBallPosition = ball.getPosition();
+    if(finalBallPosition.x == 4.0 && finalBallPosition.y >= -1.5 && finalBallPosition.y <= 1.5) {
+      cout << "GOALLLLL!!!!!!!!" << endl;
+
+      break;
+    }
 
     Sleep(1000);
   }

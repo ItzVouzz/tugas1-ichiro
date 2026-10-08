@@ -23,19 +23,17 @@ void Ball::update() {
     position.x = position.x + direction.x * speed;
     position.y = position.y + direction.y * speed;
 
-    if(position.x < -4.5) {
-      position.x = -4.5;
-    } else if(position.x > 4.5) {
-      position.x = 4.5;
+    if(position.x > 4.0 && position.y >= -1.5 && position.y <= 1.5) {
+      position.x = 4.0;
+      speed = 0.0;
     }
-
-    if(position.y < -3.0) {
-      position.y = -3.0;
-    } else if(position.y > 3.0) {
-      position.y = 3.0;
+    if(position.x < -4.5 || position.x > 4.0 || position.y < -3.0 || position.y > 2.5) {
+      position.x = 0.0;
+      position.y = 0.0;
+      speed = 0.0;
+    } else {
+      speed--;
     }
-
-    speed--;
   }
 }
 

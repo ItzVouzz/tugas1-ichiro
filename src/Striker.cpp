@@ -33,9 +33,28 @@ void Striker::think() {
 
 void Striker::act(Ball& ball) {
   switch(currentState) {
-    case SEARCH_BALL:
-      setOrientation(getOrientation() + 90.0);
+    case SEARCH_BALL: {
+      Vector2D nextPosition = position;
+      float currentOrientation = getOrientation();
+
+      if(currentOrientation == 0.0) {
+        nextPosition.x += getSpeed();
+      } else if(currentOrientation == 90.0) {
+        nextPosition.y -= getSpeed();
+      } else if(currentOrientation == 180.0) {
+        nextPosition.x -= getSpeed();
+      } else if(currentOrientation == 270.0) {
+        nextPosition.y += getSpeed();
+      }
+
+      if(nextPosition.x > 4.0 || nextPosition.x < -4.5 || nextPosition.y > 2.5 || nextPosition.y < -3.0) {
+        setOrientation(currentOrientation + 90.0);
+      } else {
+        setPosition(nextPosition);
+      }
+
       break;
+    }
     case ALIGN_TO_GOAL:
       setOrientation(0.0);
       break;
