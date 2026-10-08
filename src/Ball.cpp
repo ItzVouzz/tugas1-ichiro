@@ -19,9 +19,26 @@ void Ball::kick(Vector2D targetDirection) {
 }
 
 void Ball::update() {
-  while(speed > 0) {
+  if(speed > 0) {
     position.x = position.x + direction.x * speed;
-    position.y = position.y + direction.y + speed;
+    position.y = position.y + direction.y * speed;
+
+    if(position.x < -4.5) {
+      position.x = -4.5;
+    } else if(position.x > 4.5) {
+      position.x = 4.5;
+    }
+
+    if(position.y < -3.0) {
+      position.y = -3.0;
+    } else if(position.y > 3.0) {
+      position.y = 3.0;
+    }
+
     speed--;
   }
+}
+
+void Ball::setPosition(Vector2D newPosition) {
+  position = newPosition;
 }

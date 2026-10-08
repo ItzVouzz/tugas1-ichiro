@@ -16,6 +16,7 @@ class Ball {
     Vector2D getPosition();
     void kick(Vector2D targetDirection);
     void update();
+    void setPosition(Vector2D newPosition);
 };
 
 #endif

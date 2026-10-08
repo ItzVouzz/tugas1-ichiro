@@ -1,0 +1,4 @@
+RobotX -3.5
+RobotY -1.5
+BallX -1.5
+BallY 0.0

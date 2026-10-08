@@ -14,9 +14,12 @@ void Striker::think() {
   if(!isBallVisible) {
     currentState = SEARCH_BALL;
   } else {
-    float distance = MathHelper::calculateDistance(position, perceivedBallPos);
+    Vector2D idealPosition;
+    idealPosition.x = perceivedBallPos.x - 0.5;
+    idealPosition.y = perceivedBallPos.y;
+    float distance = MathHelper::calculateDistance(position, idealPosition);
 
-    if(distance <= 0.6) {
+    if(distance <= 0.1) {
       if(getOrientation() == 0.0) {
         currentState = KICK;
       } else {
@@ -51,14 +54,20 @@ void Striker::act(Ball& ball) {
       ball.kick(kickDirection);
       break;
     case APPROACH_BALL:
-      float dx = perceivedBallPos.x - position.x;
-      float dy = perceivedBallPos.y - position.y;
-      float distance = MathHelper::calculateDistance(position, perceivedBallPos);
+      Vector2D idealPosition;
+      idealPosition.x = perceivedBallPos.x - 0.5;
+      idealPosition.y = perceivedBallPos.y;
+      float dx = idealPosition.x - position.x;
+      float dy = idealPosition.y - position.y;
+      float distance = MathHelper::calculateDistance(position, idealPosition);
 
       if(distance > 0) {
         Vector2D newPosition = position;
-        newPosition.x = newPosition.x + (dx/distance) * getSpeed();
-        newPosition.y = newPosition.y + (dy/distance) * getSpeed();
+
+        float moveStep = (distance < getSpeed()) ? distance : getSpeed();
+
+        newPosition.x = newPosition.x + (dx/distance) * moveStep;
+        newPosition.y = newPosition.y + (dy/distance) * moveStep;
         setPosition(newPosition);
 
         if(abs(dx) > abs(dy)) {
