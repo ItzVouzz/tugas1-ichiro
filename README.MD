@@ -5,18 +5,18 @@ Proyek ini adalah simulasi terminal berbasis C++ tentang permainan sepak bola ya
 ## 🚀 Panduan Running
 
 1. **Compile** semua file menggunakan _command_ berikut:
-   ```bash
-   g++ -I include src/*.cpp -o main
-   ```
 
-````
+```bash
+g++ -I include src/*.cpp -o main
+```
 
 2. **Eksekusi** program dengan menjalankan perintah berikut sesuai sistem operasi Anda:
-* Untuk **Windows**:
+
+- Untuk **Windows**:
+
 ```bash
 .\main
-
-````
+```
 
 - Untuk **Linux / macOS**:
 
@@ -48,8 +48,4 @@ Di dalam fase _Act_, robot memiliki **4 _state_** utama:
 - `ALIGN_TO_GOAL`: Berfungsi mengatur orientasi agar robot menghadap tepat ke arah bola dan gawang.
 - `KICK`: Robot menentukan sudut tendangan berdasarkan posisinya terhadap gawang lalu mengeksekusi tendangan pada bola.
 
-* AI Digunakan untuk membantu menjelaskan logika state pada striker serta untuk mempercantik README.md
-
-```
-
-```
+**AI Digunakan untuk membantu menjelaskan logika state pada striker serta untuk mempercantik README.md**
