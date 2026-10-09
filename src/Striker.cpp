@@ -47,7 +47,10 @@ void Striker::act(Ball& ball) {
         nextPosition.y += getSpeed();
       }
 
-      if(nextPosition.x > 4.0 || nextPosition.x < -4.5 || nextPosition.y > 2.5 || nextPosition.y < -3.0) {
+      bool isOutField = (nextPosition.x > 4.0 || nextPosition.x < -4.5 || nextPosition.y > 2.5 || nextPosition.y < -3.0);
+      bool isHittingGoal = (nextPosition.x >= 4.0 && nextPosition.y >= -1.5 && nextPosition.y <= 1.5);
+
+      if(isOutField || isHittingGoal) {
         setOrientation(currentOrientation + 90.0);
       } else {
         setPosition(nextPosition);
