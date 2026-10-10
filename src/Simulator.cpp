@@ -1,6 +1,5 @@
 #include "Simulator.hpp"
 #include <windows.h>
-#include <cstdlib>
 #include <fstream>
 #include <string>
 
@@ -35,7 +34,7 @@ void Simulator::run() {
   while(true) {
     currentTick++;
 
-    system("cls");
+    cout << "\033[H";
 
     striker.sense(ball.getPosition());
     striker.think();
@@ -52,6 +51,7 @@ void Simulator::run() {
     }
 
     Sleep(1000);
+    cout << "\033[J" << std::flush;
   }
 }
 
