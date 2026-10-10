@@ -48,4 +48,4 @@ Di dalam fase _Act_, robot memiliki **4 _state_** utama:
 - `ALIGN_TO_GOAL`: Berfungsi mengatur orientasi agar robot menghadap tepat ke arah bola dan gawang.
 - `KICK`: Robot menentukan sudut tendangan berdasarkan posisinya terhadap gawang lalu mengeksekusi tendangan pada bola.
 
-**AI Digunakan untuk membantu menjelaskan logika state pada striker serta untuk mempercantik README.md**
+**AI Digunakan untuk membantu menjelaskan logika state pada striker, menjelaskan konsep matematika vektor dan fisika pada program serta untuk mempercantik README.md**

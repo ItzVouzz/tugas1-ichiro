@@ -9,9 +9,7 @@ struct Vector2D {
 
 class MathHelper {
   public:
-    static float calculateDistance(Vector2D a, Vector2D b) {
-      return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-    }
+    static float calculateDistance(Vector2D a, Vector2D b);
 };
 
 #endif
