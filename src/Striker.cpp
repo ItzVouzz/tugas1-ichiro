@@ -34,6 +34,9 @@ void Striker::think() {
 void Striker::act(Ball& ball) {
   switch(currentState) {
     case SEARCH_BALL: {
+      static int stepsTaken = 0;
+      static int spiralLimit = 2;
+
       Vector2D nextPosition = position;
       float currentOrientation = getOrientation();
 
@@ -51,8 +54,26 @@ void Striker::act(Ball& ball) {
       bool isHittingGoal = (nextPosition.x >= 4.0 && nextPosition.y >= -1.5 && nextPosition.y <= 1.5);
 
       if(isOutField || isHittingGoal) {
-        setOrientation(currentOrientation + 90.0);
+        float newOrientation = currentOrientation + 90.0;
+        if(newOrientation >= 360.0) newOrientation = 0.0;
+        setOrientation(newOrientation);
+
+        stepsTaken = 0;
+        spiralLimit = 3;
       } else {
+        stepsTaken++;
+
+        if(stepsTaken >= spiralLimit) {
+          float newOrientation = currentOrientation + 90.0;
+          if(newOrientation >= 360.0) newOrientation = 0.0;
+          setOrientation(newOrientation);
+
+          stepsTaken = 0;
+          spiralLimit += 2;
+
+          if(spiralLimit > 10) spiralLimit = 3;
+        }
+
         setPosition(nextPosition);
       }
 

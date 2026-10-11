@@ -1,5 +1,6 @@
 #include "Sensor.hpp"
 #include <stdexcept>
+#include <cmath>
 
 Vector2D Sensor::scan(Vector2D robotPosition, float robotOrientaion, Vector2D ballPosition) {
   float distance = MathHelper::calculateDistance(robotPosition, ballPosition);
@@ -11,13 +12,13 @@ Vector2D Sensor::scan(Vector2D robotPosition, float robotOrientaion, Vector2D ba
   float dy = ballPosition.y - robotPosition.y;
   bool isFacingBall = false;
 
-  if(robotOrientaion == 0.0 && dx >= 0) {
+  if(robotOrientaion == 0.0 && dx > 0.0 && abs(dy) <= dx) {
     isFacingBall = true;
-  } else if(robotOrientaion == 90.0 && dy <= 0) {
+  } else if(robotOrientaion == 90.0 && dy < 0.0 && abs(dx) <= abs(dy)) {
     isFacingBall = true;
-  } else if(robotOrientaion == 180.0 && dx <= 0) {
+  } else if(robotOrientaion == 180.0 && dx < 0.0 && abs(dy) <= abs(dx)) {
     isFacingBall = true;
-  } else if(robotOrientaion == 270.0 && dy >= 0) {
+  } else if(robotOrientaion == 270.0 && dy > 0.0 && abs(dx) <= dy) {
     isFacingBall = true;
   }
 
